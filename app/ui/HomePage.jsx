@@ -7,24 +7,20 @@ function HomePage({ chatRes }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
-  const [isLoading, setIsLoading] = useState(false); // Added loading state
+
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = () => {
-    setIsLoading(true); // Set loading to true before search starts
     const params = new URLSearchParams(searchParams);
 
     if (searchQuery) {
-      if (searchQuery.length > 3) {
-        params.set("q", searchQuery);
-      }
+      params.set("q", searchQuery);
     } else {
       params.delete("q");
     }
 
     setTimeout(() => {
       replace(`${pathname}?${params}`);
-      setIsLoading(false); // Set loading to false after search completes
     }, 1000);
   };
 
@@ -38,7 +34,7 @@ function HomePage({ chatRes }) {
         onChange={(e) => setSearchQuery(e.target.value)}
         className="w-full p-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm resize-none focus:outline-none focus:ring-2"
         rows="3"
-        placeholder="Type your search query here..."
+        placeholder="Type your search query here minimum 6 words..."
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             handleSearch();
@@ -48,18 +44,15 @@ function HomePage({ chatRes }) {
       <p className="py-1"></p>
       <button
         onClick={handleSearch}
-        disabled={isLoading}
-        className={`w-full py-1 px-4 rounded ${
-          isLoading ? "bg-gray-500" : "bg-black"
-        } text-white`}
+        className={` w-full rounded-md p-1
+        bg-black
+        text-white`}
       >
-        {isLoading ? "Response..." : "Submit"}
+        Submit Answer
       </button>
 
       <h1 className="font-bold text-black pt-2 "> Response : </h1>
-      <p className="font-italic text-red-800 font-serif">
-        {chatRes.length === 0 ? "No response yet" : chatRes}
-      </p>
+      <p className="font-italic text-red-800 font-serif">{chatRes}</p>
     </div>
   );
 }
