@@ -5,30 +5,11 @@ const llm = new Ollama({
   temperature: 0,
   maxRetries: 2,
 });
+// import { ChatPromptTemplate } from "@langchain/core/prompts";
 
 export const ResLama = async (q) => {
   try {
     const inputText = q;
-    // //one input (String Model)
-    // const inputPrompt = new PromptTemplate({
-    //   inputVariables: ["language"],
-    //   template: "Tell me a trick of {language}",
-    // });
-
-    // const formatedInputPrompt = await inputPrompt.format({
-    //   language: inputText,
-    // });
-
-    //multi input(String Model)
-    // const multiInputPrompt = new PromptTemplate({
-    //   inputVariables: ["language", "topic"],
-    //   template: "Tell me a trick of {language} from {topic}",
-    // });
-
-    // const formatedMultiInputPrompt = await multiInputPrompt.format({
-    //   language: inputText,
-    //   topic: "function",
-    // });
 
     //easyToUse (String Model)
     // const template = "Tell me a trick of {language} from {topic}";
@@ -42,11 +23,37 @@ export const ResLama = async (q) => {
 
     /// Next Task Chat Model Template
 
-    // const response = await llm.invoke(inputText);
-    // const response = await llm.invoke(formatedInputPrompt);
-    // const response = await llm.invoke(formatedMultiInputPrompt);
-    // const response = await llm.invoke(formatedpromptTemplate);
+    // const aiMsg = await llm.invoke([
+    //   [
+    //     "system",
+    //     "You are a helpful assistant that translates English to French. Translate the user sentence.",
+    //   ],
+    //   ["human", inputText],
+    // ]);
+    // console.log(aiMsg);
+
+    // const prompt = ChatPromptTemplate.fromMessages([
+    //   [
+    //     "system",
+    //     "You are a helpful assistant that translates {input_language} to {output_language}.",
+    //   ],
+    //   ["human", "{input}"],
+    // ]);
+
+    // const chain = prompt.pipe(llm);
+    // const res = await chain.invoke({
+    //   input_language: "English",
+    //   output_language: "German",
+    //   input: inputText,
+    // });
+
+    // console.log(res);
+
     const response = await llm.invoke(inputText);
+    // const response = await llm.invoke(formatedpromptTemplate);
+    // const response = await llm.invoke(inputText);
+    // return aiMsg;
+    // return res;
     return response;
   } catch (err) {
     console.log(err);
