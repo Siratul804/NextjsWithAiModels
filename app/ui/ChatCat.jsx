@@ -49,8 +49,6 @@ const ChatCat = () => {
             disabled={isLoading} // Disable input during loading
           ></textarea>
 
-          <div className="py-2"></div>
-
           {/* Submit Button */}
           <button
             onClick={submitData}

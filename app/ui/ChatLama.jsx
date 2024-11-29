@@ -43,7 +43,7 @@ function ChatLama({ chatRes }) {
         onClick={handleSearch}
         className="w-full bg-black text-white font-medium py-2 px-4 rounded-lg hover:bg-gray-800 focus:outline-none focus:ring-2 "
       >
-        Submit Answer
+        Submit Query
       </button>
 
       <h1 className="font-bold text-black pt-2 "> Response : </h1>
