@@ -8,6 +8,8 @@ function ChatLama({ chatRes }) {
   const pathname = usePathname();
   const { replace } = useRouter();
 
+  console.log(chatRes);
+
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = () => {

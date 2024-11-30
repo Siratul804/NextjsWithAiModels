@@ -1,5 +1,11 @@
 import { Ollama } from "@langchain/ollama";
-// import { PromptTemplate } from "@langchain/core/prompts";
+
+import {
+  CommaSeparatedListOutputParser,
+  StringOutputParser,
+} from "@langchain/core/output_parsers";
+import { StructuredOutputParser } from "langchain/output_parsers";
+import { PromptTemplate } from "@langchain/core/prompts";
 // import {
 //   ChatPromptTemplate,
 //   FewShotChatMessagePromptTemplate,
@@ -88,8 +94,21 @@ export const ResLama = async (q) => {
     //     const response = await llm.invoke(formattedChatPrompt);
     //     console.log(response);
 
+    //Output Parser
+    const prompt = PromptTemplate.fromTemplate("{input}\n");
+
+    const OutputParser = new CommaSeparatedListOutputParser();
+
+    const chain = prompt.pipe(llm).pipe(OutputParser);
+
+    const response = await chain.invoke({
+      input: inputText,
+    });
+
+    console.log(response);
+
     // const response = await llm.invoke(formatedpromptTemplate);
-    const response = await llm.invoke(inputText);
+    // const response = await llm.invoke(inputText);
     // return aiMsg;
     // return res;
     return response;
