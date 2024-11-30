@@ -1,5 +1,9 @@
 import { Ollama } from "@langchain/ollama";
 // import { PromptTemplate } from "@langchain/core/prompts";
+// import {
+//   ChatPromptTemplate,
+//   FewShotChatMessagePromptTemplate,
+// } from "@langchain/core/prompts";
 const llm = new Ollama({
   model: "qwen2.5-coder:1.5b",
   temperature: 0,
@@ -49,9 +53,43 @@ export const ResLama = async (q) => {
 
     // console.log(res);
 
-    const response = await llm.invoke(inputText);
+    //FewShotChatMessagePromptTemplate
+
+    //     const examples = [
+    //       {
+    //         input: "2+2",
+    //         output: "4",
+    //       },
+    //       {
+    //         input: "2+3",
+    //         output: "5",
+    //       },
+    //     ];
+
+    //     const examplePrompt = ChatPromptTemplate.fromTemplate(`Human: {input}
+    // AI: {output}`);
+
+    //     const fewShotPrompt = new FewShotChatMessagePromptTemplate({
+    //       examplePrompt,
+    //       examples,
+    //       inputVariables: ["input"],
+    //     });
+
+    //     const finalPrompt = ChatPromptTemplate.fromMessages([
+    //       ["system", "You are a helpful math problem solver."],
+    //       fewShotPrompt,
+    //       ["human", "{input}"],
+    //     ]);
+
+    //     const formattedChatPrompt = await finalPrompt.format({
+    //       input: inputText,
+    //     });
+
+    //     const response = await llm.invoke(formattedChatPrompt);
+    //     console.log(response);
+
     // const response = await llm.invoke(formatedpromptTemplate);
-    // const response = await llm.invoke(inputText);
+    const response = await llm.invoke(inputText);
     // return aiMsg;
     // return res;
     return response;

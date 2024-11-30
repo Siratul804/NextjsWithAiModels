@@ -43,7 +43,7 @@ export async function POST(req) {
     const prompt = ChatPromptTemplate.fromMessages([
       [
         "system",
-        "You are a helpful assistant that only tell about {input_language}. You are advised to talk about to {output_language} only. If human tells about any other topic with out {output_language} then just say : I am sorry , I don't know the answer",
+        "You are a helpful assistant that only tell about {input_language}. You are advised to talk about to {output_language} only. If human tells about any other topic without {output_language} then just say : I am sorry , I don't know the answer. Remember don't tell anything if that does not match with the keyword cat. If there is any keyword not related with cat just say: I don't know the answer",
       ],
       ["human", "{input}"],
     ]);

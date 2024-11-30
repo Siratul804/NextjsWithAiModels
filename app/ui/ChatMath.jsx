@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-const ChatCat = () => {
+const ChatMath = () => {
   const [query, setQuery] = useState("");
   const [chatRes, setChatRes] = useState("");
   const [isLoading, setIsLoading] = useState(false); // Loading state
@@ -10,7 +10,7 @@ const ChatCat = () => {
     setIsLoading(true); // Start loading
     setChatRes(""); // Clear previous response
     try {
-      const response = await fetch("/api/chatCat", {
+      const response = await fetch("/api/chatMath", {
         method: "POST",
         body: JSON.stringify({ query }),
         headers: { "Content-Type": "application/json" },
@@ -36,7 +36,7 @@ const ChatCat = () => {
     <div className="p-4 flex justify-center">
       <div className="w-full bg-white rounded-lg">
         <h1 className="text-left py-2 text-xl font-bold font-mono">
-          Hey! Tell me, what's your cat eats every day?
+          Hey! Tell me, Anything related to math?
         </h1>
         <div>
           {/* Textarea Input */}
@@ -75,4 +75,4 @@ const ChatCat = () => {
   );
 };
 
-export default ChatCat;
+export default ChatMath;
