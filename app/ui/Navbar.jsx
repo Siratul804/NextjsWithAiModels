@@ -27,6 +27,9 @@ const Navbar = () => {
             <Link href="/pages/chatMath" className="hover:text-gray-300">
               Chat Math
             </Link>
+            <Link href="/pages/chatUp" className="hover:text-gray-300">
+              Chat Up
+            </Link>
           </div>
 
           {/* Hamburger Menu */}
