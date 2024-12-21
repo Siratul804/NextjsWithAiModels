@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Ollama } from "@langchain/ollama";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
+
 // Initialize the Ollama model
 const llm = new Ollama({
   model: "qwen2.5-coder:1.5b",
