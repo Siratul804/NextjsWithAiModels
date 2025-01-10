@@ -7,7 +7,7 @@ async function page() {
             Let's ChatWithAI
           </h1>
           <p className="mt-4 text-xl sm:text-2xl lg:text-3xl text-gray-400">
-            Langchainjs_Ollama_NextJS
+            SetOfAIModels
           </p>
         </div>
       </main>

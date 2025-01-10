@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import Groq from "groq-sdk";
+
+const client = new Groq({
+  apiKey: process.env.GROQ_API_KEY, // This is the default and can be omitted
+});
 
 export async function POST(req) {
   try {
@@ -16,22 +20,23 @@ export async function POST(req) {
 
     console.log("Received query:", query);
 
-    const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    async function main() {
+      const chatCompletion = await client.chat.completions.create({
+        messages: [
+          {
+            role: "user",
+            content: query,
+          },
+        ],
+        model: "llama3-8b-8192",
+      });
 
-    const result = await model.generateContent(query);
+      console.log(chatCompletion.choices[0].message.content);
+    }
 
-    console.log(
-      result.response.candidates.map((val) =>
-        val.content.parts.map((val) => val.text)
-      )
-    );
+    main();
 
-    const res = result.response.candidates.map((val) =>
-      val.content.parts.map((val) => val.text)
-    );
-
-    return NextResponse.json({ data: res });
+    return NextResponse.json({ data: query });
   } catch (err) {
     console.error("Error invoking gemini:", err);
     // Return a graceful error response
