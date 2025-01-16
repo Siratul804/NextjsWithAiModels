@@ -30,6 +30,9 @@ const Navbar = () => {
             <Link href="/pages/chatUp" className="hover:text-gray-300">
               Chat Up
             </Link>
+            <Link href="/pages/chatCode" className="hover:text-gray-300">
+              Chat Code
+            </Link>
           </div>
 
           {/* Hamburger Menu */}
